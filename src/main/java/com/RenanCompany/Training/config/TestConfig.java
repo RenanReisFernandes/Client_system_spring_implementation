@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.RenanCompany.Training.entity.Category;
 import com.RenanCompany.Training.entity.Order;
 import com.RenanCompany.Training.entity.OrderItem;
+import com.RenanCompany.Training.entity.Payment;
 import com.RenanCompany.Training.entity.Product;
 import com.RenanCompany.Training.entity.User;
 import com.RenanCompany.Training.entity.enums.OrderStatus;
@@ -52,9 +53,11 @@ public class TestConfig implements CommandLineRunner {
 		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456"); 
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
 		
-		Order o1 = new Order(null, Instant.parse("2023-04-18T19:55:07Z"),OrderStatus.DELIVERED, u1);
+		Order o1 = new Order(null, Instant.parse("2023-04-18T19:55:07Z"),OrderStatus.PAID, u1);
 		Order o2 = new Order(null, Instant.parse("2023-05-06T14:55:07Z"),OrderStatus.SHIPPED, u2);
 		Order o3 = new Order(null, Instant.parse("2023-06-25T19:55:07Z"),OrderStatus.CANCELED, u1);
+		
+		
 		
 		
 		Product p1 = new Product(null, "The Lord of the Rings", "Lorem ipsum dolor sit amet, consectetur.", 90.5, ""); 
@@ -63,6 +66,9 @@ public class TestConfig implements CommandLineRunner {
 		Product p4 = new Product(null, "PC Gamer", "Donec aliquet odio ac rhoncus cursus.", 1200.0, ""); 
 		Product p5 = new Product(null, "Rails for Dummies", "Cras fringilla convallis sem vel faucibus.", 100.99, ""); 
 		
+		Payment pay1 = new Payment(null,Instant.parse("2023-04-18T22:55:07Z"), o1 );
+		o1.setPayment(pay1);
+		orderRepository.save(o1);
 		
 		p1.getCategories().add(cat2);
 		p2.getCategories().add(cat1);
