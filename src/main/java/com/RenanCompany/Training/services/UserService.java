@@ -11,6 +11,8 @@ import com.RenanCompany.Training.repositories.UserRepository;
 
 @Service
 public class UserService {
+	/*
+	 * */
 	
 	@Autowired
 	private UserRepository repository;
